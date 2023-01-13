@@ -1,5 +1,6 @@
 <script>
 import { store } from '../store.js'
+import "/node_modules/flag-icons/css/flag-icons.min.css";
 
 export default {
   name: 'AppMain',
@@ -8,6 +9,7 @@ export default {
       store,
     }
   },
+
 }
 </script>
 
@@ -18,10 +20,15 @@ export default {
         {{ movie.title }} - {{ movie.original_title }} - {{ movie.original_language }} - {{ movie.vote_average }}
 
       </div>
+      <div class="col-4" v-for="tvShow in store.searchedTvshow">
+        {{ tvShow.name }} - {{ tvShow.original_name }} - {{ tvShow.original_language }} - {{ tvShow.vote_average }}
+
+      </div>
+
     </div>
   </section>
 </template>
 
 <style lang="scss" scoped>
-  
+
 </style>

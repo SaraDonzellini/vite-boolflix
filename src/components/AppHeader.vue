@@ -17,9 +17,11 @@ export default {
       <div class="col-12">
         <h1>Boolflix</h1>
         <div class="input-group mb-3">
-  <input type="text" class="form-control" placeholder="Cerca" aria-label="Recipient's username" aria-describedby="button-search" v-model="store.searchText">
-  <button class="btn btn-outline-secondary" type="button" id="button-search" @click="$emit('searchMovie')">Cerca</button>
-</div>
+          <input type="text" class="form-control" placeholder="Cerca" aria-label="Recipient's username"
+            aria-describedby="button-search" v-model="store.searchText" @keyup.enter="$emit('searchMovie')">
+          <button class="btn btn-outline-secondary" type="button" id="button-search"
+            @click="$emit('searchMovie')">Cerca</button>
+        </div>
 
 
       </div>
@@ -28,5 +30,5 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-  
+
 </style>

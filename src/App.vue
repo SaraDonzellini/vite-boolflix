@@ -5,42 +5,59 @@ import AppHeader from './components/AppHeader.vue';
 import AppMain from './components/AppMain.vue';
 
 export default {
-    data() {
-      return {
-        store,
-        
+  data() {
+    return {
+      store,
 
-      }
-    },
-    methods: {
-        searchApi(searchedText) {
-            axios.get(" https://api.themoviedb.org/3/search/movie?api_key=4bc85001b5721a0ecbd19f8488e3f941", {
-                params: {
-                    query: searchedText,
-                    page: 1,
-                    include_adult : false,
-                }
-            })
-                .then((response) => {
-                console.log(response.data.results);
-                store.searchedMovie = response.data.results
-                console.log(store.searchedMovie);
-            })
-                .catch(function (error) {
-                console.log(error);
-            });
+
+    }
+  },
+  methods: {
+    searchMovie(searchedText) {
+      axios.get(" https://api.themoviedb.org/3/search/movie?api_key=4bc85001b5721a0ecbd19f8488e3f941", {
+        params: {
+          query: searchedText,
+          page: 1,
+          include_adult: false,
         }
+      })
+        .then((response) => {
+          console.log(response.data.results);
+          store.searchedMovie = response.data.results
+          console.log(store.searchedMovie);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     },
-    components: {
+    searchTvshow(searchedText) {
+      axios.get(" https://api.themoviedb.org/3/search/tv?api_key=4bc85001b5721a0ecbd19f8488e3f941", {
+        params: {
+          query: searchedText,
+          page: 1,
+          include_adult: false,
+        }
+      })
+        .then((response) => {
+          console.log(response.data.results);
+          store.searchedTvshow = response.data.results
+          console.log(store.searchedTvshow);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
+  },
+  components: {
     AppHeader,
     AppMain
-},
+  },
 }
 </script>
 
 <template>
   <header>
-    <AppHeader @searchMovie="searchApi(store.searchText)"/>
+    <AppHeader @searchMovie="[searchMovie(store.searchText), searchTvshow(store.searchText)]" />
   </header>
   <main>
     <AppMain />
@@ -48,6 +65,5 @@ export default {
 </template>
 
 <style>
-
 
 </style>
