@@ -14,7 +14,7 @@ export default {
     }
   },
   methods: {
-    onMouseEnter(){
+    onMouseEnter() {
 
     }
   },
@@ -26,7 +26,7 @@ export default {
   <section class="container">
     <div class="row">
       <div class="col-3" v-for="movie in store.searchedMovie">
-        <div class="img">
+        <div class="img-wrapper">
           <img :src="`https://image.tmdb.org/t/p/w342/${movie.poster_path}`" :alt="movie.title">
           <div class="card-box">
             <h4>
@@ -78,16 +78,16 @@ export default {
 
 div.col-3 {
   margin: 2rem;
-  
-  .img{
+
+  .img-wrapper {
     position: relative;
-    
+
   }
 
-  .img:hover .card-box{
-    
+  .img-wrapper:hover .card-box {
+
     display: inline-block;
-    
+
   }
 }
 
@@ -97,7 +97,7 @@ div.col-3 {
   position: absolute;
   bottom: 0px;
   left: 0px;
-  display:none;
+  display: none;
   color: white;
   // color: black;
 }
