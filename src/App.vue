@@ -65,5 +65,9 @@ export default {
 </template>
 
 <style lang="scss">
+  header{
+    background-color: #0b0b0b;
+    color: red
 
+  }
 </style>
