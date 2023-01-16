@@ -14,7 +14,9 @@ export default {
     }
   },
   methods: {
+    onMouseEnter(){
 
+    }
   },
 
 }
@@ -24,38 +26,43 @@ export default {
   <section class="container">
     <div class="row">
       <div class="col-3" v-for="movie in store.searchedMovie">
-        <img :src="`https://image.tmdb.org/t/p/w342/${movie.poster_path}`" :alt="movie.title">
-        <div class="card-box">
-          <h4>
-            {{ movie.title }}
-          </h4>
-          <h6>
-            <em>{{ movie.original_title }}</em>
-          </h6>
-          <p>Language: <lang-flag :iso="movie.original_language" /></p>
-          <p>Rating: <i class="fa-solid fa-star" v-for="n in Math.ceil(movie.vote_average / 2)"></i><i
-              class="fa-regular fa-star" v-for="n in Math.floor(5 - (movie.vote_average / 2))"></i></p>
-          <p class="overview">
-            Overview: {{ movie.overview }}
-          </p>
+        <div class="img">
+          <img :src="`https://image.tmdb.org/t/p/w342/${movie.poster_path}`" :alt="movie.title">
+          <div class="card-box">
+            <h4>
+              {{ movie.title }}
+            </h4>
+            <h6>
+              <em>{{ movie.original_title }}</em>
+            </h6>
+            <p>Language: <lang-flag :iso="movie.original_language" /></p>
+            <p>Rating: <i class="fa-solid fa-star" v-for="n in Math.ceil(movie.vote_average / 2)"></i><i
+                class="fa-regular fa-star" v-for="n in Math.floor(5 - (movie.vote_average / 2))"></i></p>
+            <p class="overview">
+              Overview: {{ movie.overview }}
+            </p>
+          </div>
         </div>
       </div>
 
       <div class="col-3" v-for="tvShow in store.searchedTvshow">
-        <img :src="`https://image.tmdb.org/t/p/w342/${tvShow.poster_path}`" :alt="tvShow.name" @mouseenter="">
-        <div class="card-box">
-          <h4>
-            {{ tvShow.name }}
-          </h4>
-          <h6>
-            <em>{{ tvShow.original_name }}</em>
-          </h6>
-          <p>Language: <lang-flag :iso="tvShow.original_language" /> </p>
-          <p>Rating: <i class="fa-solid fa-star" v-for="n in Math.ceil(tvShow.vote_average / 2)"></i><i
-              class="fa-regular fa-star" v-for="n in Math.floor(5 - (tvShow.vote_average / 2))"></i></p>
-          <p class="overview">
-            Overview: {{ tvShow.overview }}
-          </p>
+        <div class="img">
+          <img :src="`https://image.tmdb.org/t/p/w342/${tvShow.poster_path}`" :alt="tvShow.name">
+          <div class="card-box">
+            <h4>
+              {{ tvShow.name }}
+            </h4>
+            <h6>
+              <em>{{ tvShow.original_name }}</em>
+            </h6>
+            <p>Language: <lang-flag :iso="tvShow.original_language" /> </p>
+            <p>Rating: <i class="fa-solid fa-star" v-for="n in Math.ceil(tvShow.vote_average / 2)"></i><i
+                class="fa-regular fa-star" v-for="n in Math.floor(5 - (tvShow.vote_average / 2))"></i></p>
+            <p class="overview">
+              Overview: {{ tvShow.overview }}
+            </p>
+          </div>
+
         </div>
 
       </div>
@@ -70,11 +77,17 @@ export default {
 }
 
 div.col-3 {
-  position: relative;
   margin: 2rem;
+  
+  .img{
+    position: relative;
+    
+  }
 
-  img:hover {
-    filter: opacity(10%);
+  .img:hover .card-box{
+    
+    display: inline-block;
+    
   }
 }
 
@@ -83,6 +96,9 @@ div.col-3 {
   text-align: center;
   position: absolute;
   bottom: 0px;
+  left: 0px;
   display:none;
+  color: white;
+  // color: black;
 }
 </style>
