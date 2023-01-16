@@ -22,6 +22,7 @@ export default {
 
       <h2>Movies</h2>
       <div class="col-4" v-for="movie in store.searchedMovie">
+        <img :src="`https://image.tmdb.org/t/p/w342/${movie.poster_path}`" :alt="movie.title">
         <h4>
           {{ movie.title }}
         </h4>
@@ -34,6 +35,7 @@ export default {
 
       <h2>Tv shows</h2>
       <div class="col-4" v-for="tvShow in store.searchedTvshow">
+        <img :src="`https://image.tmdb.org/t/p/w342/${tvShow.poster_path}`" :alt="tvShow.name">
         <h4>
           {{ tvShow.name }}
         </h4>
