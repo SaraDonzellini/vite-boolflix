@@ -12,6 +12,11 @@ export default {
       store,
     }
   },
+  methods: {
+    seeStars(){
+      
+    }
+  },
 
 }
 </script>
@@ -30,7 +35,7 @@ export default {
           <em>{{ movie.original_title }}</em>
         </h5>
         <p>Language: <lang-flag :iso="movie.original_language" /></p>
-        <p>Rating: {{ movie.vote_average }}</p>
+        <p>Rating: {{ Math.ceil(movie.vote_average / 2) }}</p>
       </div>
 
       <h2>Tv shows</h2>
@@ -43,7 +48,7 @@ export default {
           <em>{{ tvShow.original_name }}</em>
         </h5>
         <p>Language: <lang-flag :iso="tvShow.original_language" /> </p>
-        <p>Rating: {{ tvShow.vote_average }}</p>
+        <p>Rating: {{ Math.ceil(tvShow.vote_average / 2) }}</p>
       </div>
 
     </div>
