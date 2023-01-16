@@ -18,9 +18,9 @@ export default {
         <h1>Boolflix</h1>
         <div class="input-group mb-3">
           <input type="text" class="form-control" placeholder="Cerca" aria-label="Recipient's username"
-            aria-describedby="button-search" v-model="store.searchText" @keyup.enter="$emit('searchMovie')">
+            aria-describedby="button-search" v-model="store.searchText" @keyup.enter="$emit('search')">
           <button class="btn btn-outline-secondary" type="button" id="button-search"
-            @click="$emit('searchMovie')">Cerca</button>
+            @click="$emit('search')">Cerca</button>
         </div>
 
 

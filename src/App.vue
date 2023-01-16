@@ -57,13 +57,13 @@ export default {
 
 <template>
   <header>
-    <AppHeader @searchMovie="[searchMovie(store.searchText), searchTvshow(store.searchText)]" />
+    <AppHeader @search="[searchMovie(store.searchText), searchTvshow(store.searchText)]" />
   </header>
   <main>
     <AppMain />
   </main>
 </template>
 
-<style>
+<style lang="scss">
 
 </style>
