@@ -14,7 +14,8 @@ export default {
     }
   },
   methods: {
-    onMouseEnter() {
+    getImagePath(imgName) {
+      return new URL(`../assets/imgs/${imgName}.png`, import.meta.url).href;
 
     }
   },
@@ -35,7 +36,7 @@ export default {
             <h6>
               <em>{{ movie.original_title }}</em>
             </h6>
-            <p>Language: <lang-flag :iso="movie.original_language" /></p>
+            <p>Language: <img class="flag" :src="getImagePath(movie.original_language)" alt="Non disponibile"></p>
             <p>Rating: <i class="fa-solid fa-star" v-for="n in Math.ceil(movie.vote_average / 2)"></i><i
                 class="fa-regular fa-star" v-for="n in Math.floor(5 - (movie.vote_average / 2))"></i></p>
             <p class="overview">
@@ -46,7 +47,7 @@ export default {
       </div>
 
       <div class="col-3" v-for="tvShow in store.searchedTvshow">
-        <div class="img">
+        <div class="img-wrapper">
           <img :src="`https://image.tmdb.org/t/p/w342/${tvShow.poster_path}`" :alt="tvShow.name">
           <div class="card-box">
             <h4>
@@ -55,7 +56,9 @@ export default {
             <h6>
               <em>{{ tvShow.original_name }}</em>
             </h6>
-            <p>Language: <lang-flag :iso="tvShow.original_language" /> </p>
+            <p>Language: <img class="flag" :src="getImagePath(tvShow.original_language)" alt="Non disponibile">
+              <!-- <lang-flag :iso="tvShow.original_language" />  -->
+            </p>
             <p>Rating: <i class="fa-solid fa-star" v-for="n in Math.ceil(tvShow.vote_average / 2)"></i><i
                 class="fa-regular fa-star" v-for="n in Math.floor(5 - (tvShow.vote_average / 2))"></i></p>
             <p class="overview">
@@ -82,16 +85,17 @@ div.col-3 {
   .img-wrapper {
     position: relative;
 
+
   }
 
   .img-wrapper:hover .card-box {
-
     display: inline-block;
 
   }
 }
 
 .card-box {
+  filter: none;
   width: 330px;
   text-align: center;
   position: absolute;
@@ -100,5 +104,9 @@ div.col-3 {
   display: none;
   color: white;
   // color: black;
+}
+
+.flag {
+  height: 50px;
 }
 </style>
