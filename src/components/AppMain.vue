@@ -15,8 +15,11 @@ export default {
   },
   methods: {
     getImagePath(imgName) {
-      return new URL(`../assets/imgs/${imgName}.png`, import.meta.url).href;
-
+      if (imgName !== 'da', 'de', 'en', 'fr', 'hi', 'it', 'ja', 'zh') {
+        imgName = 'nc'
+      } else {
+        return new URL(`../assets/imgs/${imgName}.png`, import.meta.url).href;
+      }
     }
   },
 
