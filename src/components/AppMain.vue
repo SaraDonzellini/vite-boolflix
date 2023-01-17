@@ -1,13 +1,15 @@
 <script>
 import { store } from '../store.js'
 import LangFlag from 'vue-lang-code-flags';
+import AppActors from './AppActors.vue';
 
 
 export default {
   name: 'AppMain',
   components: {
     LangFlag,
-  },
+    AppActors
+},
   data() {
     return {
       store,
@@ -46,6 +48,7 @@ export default {
             <p class="overview">
               Overview: {{ movie.overview }}
             </p>
+            <AppActors />
           </div>
         </div>
       </div>
