@@ -11,29 +11,29 @@ export default {
     }
   },
   methods: {
-    getGenreMovie() {
+    getGenreMovielist() {
       axios.get('https://api.themoviedb.org/3/genre/movie/list', {
         params: {
           api_key: this.apiKey,
         }
       })
         .then((response) => {
-          console.log(response.data.genres);
-          this.store.getGenreMovie = response.data.genres;
+          // console.log(response.data.genres);
+          this.store.GenreMovie = response.data.genres;
         })
         .catch(function (error) {
           console.log(error);
         });
     },
-    getGenreTV() {
+    getGenreTVlist() {
       axios.get('https://api.themoviedb.org/3/genre/tv/list', {
         params: {
           api_key: this.apiKey,
         }
       })
         .then((response) => {
-          console.log(response.data.genres);
-          this.store.getGenreTV = response.data.genres;
+          // console.log(response.data.genres);
+          this.store.GenreTV = response.data.genres;
         })
         .catch(function (error) {
           console.log(error);
@@ -41,8 +41,8 @@ export default {
     },
   },
   created() {
-    this.getGenreTV()
-    this.getGenreMovie()
+    this.getGenreTVlist()
+    this.getGenreMovielist()
   },
 }
 </script>
@@ -62,11 +62,11 @@ export default {
           </div>
           <select name="generi" id="genres" @change="getGenreMovie">
             <option value="">Scegli un genere di film</option>
-            <option v-for="genre in store.getGenreMovie" :value=genre.name>{{ genre.name }}</option>
+            <option v-for="genre in store.GenreMovie" :value=genre.name>{{ genre.name }}</option>
           </select>
           <select name="generi" id="genres" @change="getGenreTV">
             <option value="">Scegli un genere di serie tv</option>
-            <option v-for="genretv in store.getGenreTV" :value=genretv.name>{{ genretv.name }}</option>
+            <option v-for="genretv in store.GenreTV" :value=genretv.name>{{ genretv.name }}</option>
           </select>
         </div>
 
