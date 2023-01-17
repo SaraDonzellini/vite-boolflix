@@ -24,9 +24,9 @@ export default {
         }
       })
         .then((response) => {
-          console.log(response.data.results);
+          // console.log(response.data.results);
           store.searchedMovie = response.data.results
-          console.log(store.searchedMovie);
+          // console.log(store.searchedMovie);
         })
         .catch(function (error) {
           console.log(error);
@@ -42,9 +42,9 @@ export default {
         }
       })
         .then((response) => {
-          console.log(response.data.results);
+          // console.log(response.data.results);
           store.searchedTvshow = response.data.results
-          console.log(store.searchedTvshow);
+          // console.log(store.searchedTvshow);
         })
         .catch(function (error) {
           console.log(error);

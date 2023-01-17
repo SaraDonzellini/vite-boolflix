@@ -8,6 +8,7 @@ export default {
     return {
       store,
       apiKey: "4bc85001b5721a0ecbd19f8488e3f941",
+      
     }
   },
   methods: {
@@ -39,11 +40,31 @@ export default {
           console.log(error);
         });
     },
+    // searchByGenre(genreId) {
+    //   axios.get('https://api.themoviedb.org/3/discover/movie', {
+    //     params: {
+    //       api_key: this.apiKey,
+    //       sort_by: 'vote_average.asc',
+    //       include_adult: false,
+    //       page: 1,
+    //       with_genres: genreId
+    //     }
+    //   })
+    //     .then((response) => {
+    //       console.log(response.data.results);
+    //       this.store.searchedbyGenre = response.data.genres;
+    //     })
+    //     .catch(function (error) {
+    //       console.log(error);
+    //     });
+    // },
+
   },
   created() {
     this.getGenreTVlist()
     this.getGenreMovielist()
   },
+
 }
 </script>
 
@@ -60,14 +81,14 @@ export default {
             <button class="btn btn-outline-secondary" type="button" id="button-search"
               @click="$emit('search')">Cerca</button>
           </div>
-          <select name="generi" id="genres" @change="getGenreMovie">
+          <!-- <select name="generi" id="genres" @change="searchByGenre(store.genreId)" v-model="store.genreId">
             <option value="">Scegli un genere di film</option>
             <option v-for="genre in store.GenreMovie" :value=genre.name>{{ genre.name }}</option>
           </select>
-          <select name="generi" id="genres" @change="getGenreTV">
+          <select name="generi" id="genres" @change="searchByGenre(store.genreId)" v-model="store.genreId">
             <option value="">Scegli un genere di serie tv</option>
             <option v-for="genretv in store.GenreTV" :value=genretv.name>{{ genretv.name }}</option>
-          </select>
+          </select> -->
         </div>
 
 

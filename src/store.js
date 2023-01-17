@@ -10,4 +10,6 @@ export const store = reactive({
   searchedGenreTV: [],
   GenreMovie: [],
   GenreTV: [],
+  searchedbyGenre: [],
+  genreId: '',
 })

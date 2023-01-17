@@ -89,19 +89,25 @@ export default {
           console.log(error);
         });
     },
-    
+
 
   },
-  created() {
-
-  },
+  // computed: {
+  //   prova(){
+  //     console.log(store.searchedMovie)
+  //     return store.searchedMovie.filter(el=>store.genreId) 
+  //   }
+  // },
 
 }
 </script>
 
 <template>
+
   <section class="container">
+
     <div class="row">
+
       <div class="col-3" v-for="movie in store.searchedMovie">
         <div class="img-wrapper">
           <img :src="`https://image.tmdb.org/t/p/w342/${movie.poster_path}`" :alt="movie.title">
