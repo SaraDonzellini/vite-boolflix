@@ -8,14 +8,16 @@ export default {
   data() {
     return {
       store,
+      apiKey: "4bc85001b5721a0ecbd19f8488e3f941"
 
 
     }
   },
   methods: {
     searchMovie(searchedText) {
-      axios.get(" https://api.themoviedb.org/3/search/movie?api_key=4bc85001b5721a0ecbd19f8488e3f941", {
+      axios.get(" https://api.themoviedb.org/3/search/movie", {
         params: {
+          api_key : this.apiKey,
           query: searchedText,
           page: 1,
           include_adult: false,
@@ -31,8 +33,9 @@ export default {
         });
     },
     searchTvshow(searchedText) {
-      axios.get(" https://api.themoviedb.org/3/search/tv?api_key=4bc85001b5721a0ecbd19f8488e3f941", {
+      axios.get(" https://api.themoviedb.org/3/search/tv", {
         params: {
+          api_key : this.apiKey,
           query: searchedText,
           page: 1,
           include_adult: false,
@@ -67,6 +70,12 @@ export default {
 <style lang="scss">
 header {
   background-color: #0b0b0b;
-  color: red
+  color: red;
+  position: fixed;
+  width: 100%;
+  z-index: 2;
+}
+main {
+  padding-top: 4rem;
 }
 </style>
