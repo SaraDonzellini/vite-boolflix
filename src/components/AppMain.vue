@@ -15,8 +15,9 @@ export default {
   },
   methods: {
     getImagePath(imgName) {
-      if (imgName !== 'da', 'de', 'en', 'fr', 'hi', 'it', 'ja', 'zh') {
+      if (imgName !== 'da' && imgName !== 'de' && imgName !== 'en' && imgName !== 'fr' && imgName !== 'hi' && imgName !== 'it' && imgName !== 'ja' && imgName !== 'zh') {
         imgName = 'nc'
+        return new URL(`../assets/imgs/${imgName}.png`, import.meta.url).href;
       } else {
         return new URL(`../assets/imgs/${imgName}.png`, import.meta.url).href;
       }
