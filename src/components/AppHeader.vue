@@ -25,9 +25,24 @@ export default {
           console.log(error);
         });
     },
+    getGenreTV() {
+      axios.get('https://api.themoviedb.org/3/genre/tv/list', {
+        params: {
+          api_key: this.apiKey,
+        }
+      })
+        .then((response) => {
+          console.log(response.data.genres);
+          this.store.getGenreTV = response.data.genres;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
   },
   created() {
-    // this.getGenreMovie()
+    this.getGenreTV()
+    this.getGenreMovie()
   },
 }
 </script>
@@ -45,9 +60,13 @@ export default {
             <button class="btn btn-outline-secondary" type="button" id="button-search"
               @click="$emit('search')">Cerca</button>
           </div>
-          <select name="generi" id="genres" @change="$emit("change-select")">
-            <option value="">Scegli un genere</option>
+          <select name="generi" id="genres" @change="getGenreMovie">
+            <option value="">Scegli un genere di film</option>
             <option v-for="genre in store.getGenreMovie" :value=genre.name>{{ genre.name }}</option>
+          </select>
+          <select name="generi" id="genres" @change="getGenreTV">
+            <option value="">Scegli un genere di serie tv</option>
+            <option v-for="genretv in store.getGenreTV" :value=genretv.name>{{ genretv.name }}</option>
           </select>
         </div>
 
@@ -70,7 +89,7 @@ export default {
 }
 
 h1 {
-  margin-right: 50%;
+  margin-right: 20%;
   padding-top: 1rem;
 }
 </style>
