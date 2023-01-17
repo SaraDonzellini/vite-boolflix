@@ -8,4 +8,8 @@ export const store = reactive({
   searchedCastTV: [],
 
 
-})
+  
+
+
+}
+)

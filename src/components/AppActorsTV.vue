@@ -4,6 +4,9 @@ import { store } from '../store';
 
 export default {
   name: 'AppActorsTV',
+  props: {
+    tvID : Number,
+  },
   data() {
     return {
       store,
@@ -28,9 +31,6 @@ export default {
     },
     
 
-  },
-  created() {
-    this.searchActorsTvShows(tvID)
   },
 }
 </script>

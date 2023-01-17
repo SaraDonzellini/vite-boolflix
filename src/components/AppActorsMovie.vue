@@ -5,7 +5,7 @@ import { store } from '../store';
 export default {
   name: 'AppActorsMovie',
   props: {
-
+    movieID : Number,
   },
   data() {
     return {
@@ -33,14 +33,11 @@ export default {
     
 
   },
-  created() {
-    this.searchActorsMovie(movieID)
-  },
 }
 </script>
 
 <template>
-  <div v-for="cast in store.searchedCastMovie">
+  <div v-for="cast in store.searchedCastMovie" @click="$emit('actorsList')">
     {{ cast.name }}
   </div>
 </template>
