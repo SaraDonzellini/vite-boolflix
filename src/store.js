@@ -4,5 +4,8 @@ export const store = reactive({
   searchText: '',
   searchedMovie: [],
   searchedTvshow: [],
+  searchedCastMovie: [],
+  searchedCastTV: [],
+
 
 })

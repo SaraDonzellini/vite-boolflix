@@ -1,14 +1,16 @@
 <script>
 import { store } from '../store.js'
 import LangFlag from 'vue-lang-code-flags';
-import AppActors from './AppActors.vue';
+import AppActorsMovie from './AppActorsMovie.vue';
+import AppActorsTV from './AppActorsTV.vue';
 
 
 export default {
   name: 'AppMain',
   components: {
     LangFlag,
-    AppActors
+    AppActorsMovie,
+    AppActorsTV,
 },
   data() {
     return {
@@ -23,7 +25,11 @@ export default {
       } else {
         return new URL(`../assets/imgs/${imgName}.png`, import.meta.url).href;
       }
-    }
+    },
+
+  },
+  created() {
+
   },
 
 }
@@ -44,11 +50,13 @@ export default {
             </h6>
             <p>Language: <img class="flag" :src="getImagePath(movie.original_language)" alt="Non disponibile"></p>
             <p>Rating: <i class="fa-solid fa-star" v-for="n in Math.ceil(movie.vote_average / 2)"></i><i
-                class="fa-regular fa-star" v-for="n in Math.floor(5 - (movie.vote_average / 2))"></i></p>
-            <p class="overview">
-              Overview: {{ movie.overview }}
-            </p>
-            <AppActors />
+              class="fa-regular fa-star" v-for="n in Math.floor(5 - (movie.vote_average / 2))"></i></p>
+              <p class="overview">
+                Overview: {{ movie.overview }}
+              </p>
+              <p><AppActorsMovie :movieID="movie.id"/></p>
+
+            
           </div>
         </div>
       </div>
@@ -61,7 +69,7 @@ export default {
               {{ tvShow.name }}
             </h4>
             <h6>
-              <em>{{ tvShow.original_name }}</em>
+              <em>{{ tvShow.original_name }}</em> 
             </h6>
             <p>Language: <img class="flag" :src="getImagePath(tvShow.original_language)" alt="Non disponibile">
               <!-- <lang-flag :iso="tvShow.original_language" />  -->
@@ -71,6 +79,7 @@ export default {
             <p class="overview">
               Overview: {{ tvShow.overview }}
             </p>
+            <p  ><AppActorsTV :tvID="tvShow.id"/></p>
           </div>
 
         </div>
