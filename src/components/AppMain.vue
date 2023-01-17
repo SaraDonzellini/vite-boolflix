@@ -4,6 +4,8 @@ import axios from 'axios';
 import LangFlag from 'vue-lang-code-flags';
 import AppActorsMovie from './AppActorsMovie.vue';
 import AppActorsTV from './AppActorsTV.vue';
+import AppGenreMovie from './AppGenreMovie.vue'
+import AppGenreTV from './AppGenreTV.vue';
 
 
 export default {
@@ -12,7 +14,9 @@ export default {
     LangFlag,
     AppActorsMovie,
     AppActorsTV,
-},
+    AppGenreMovie,
+    AppGenreTV,
+  },
   data() {
     return {
       store,
@@ -36,7 +40,7 @@ export default {
         }
       })
         .then((response) => {
-          console.log(response.data.cast);
+          // console.log(response.data.cast);
           this.store.searchedCastMovie = response.data.cast;
         })
         .catch(function (error) {
@@ -50,13 +54,42 @@ export default {
         }
       })
         .then((response) => {
-          console.log(response.data.cast);
+          // console.log(response.data.cast);
           this.store.searchedCastTV = response.data.cast;
         })
         .catch(function (error) {
           console.log(error);
         });
     },
+    searchGenresMovie(movieId) {
+      axios.get(this.apiUri + 'movie/' + movieId, {
+        params: {
+          api_key: this.apiKey,
+        }
+      })
+        .then((response) => {
+          // console.log(response.data.genres);
+          this.store.searchedGenreMovie = response.data.genres;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
+    searchGenresTV(tvId) {
+      axios.get(this.apiUri + 'tv/' + tvId, {
+        params: {
+          api_key: this.apiKey,
+        }
+      })
+        .then((response) => {
+          // console.log(response.data.genres);
+          this.store.searchedGenreTV = response.data.genres;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
+    
 
   },
   created() {
@@ -72,7 +105,7 @@ export default {
       <div class="col-3" v-for="movie in store.searchedMovie">
         <div class="img-wrapper">
           <img :src="`https://image.tmdb.org/t/p/w342/${movie.poster_path}`" :alt="movie.title">
-          <div class="card-box" @click=searchActorsMovie(movie.id)>
+          <div class="card-box" @mouseenter=searchActorsMovie(movie.id),searchGenresMovie(movie.id)>
             <h4>
               {{ movie.title }}
             </h4>
@@ -81,13 +114,18 @@ export default {
             </h6>
             <p>Language: <img class="flag" :src="getImagePath(movie.original_language)" alt="Non disponibile"></p>
             <p>Rating: <i class="fa-solid fa-star" v-for="n in Math.ceil(movie.vote_average / 2)"></i><i
-              class="fa-regular fa-star" v-for="n in Math.floor(5 - (movie.vote_average / 2))"></i></p>
-              <p class="overview">
-                Overview: {{ movie.overview }}
-              </p>
-              <p><AppActorsMovie :movieID="movie.id" /></p>
+                class="fa-regular fa-star" v-for="n in Math.floor(5 - (movie.vote_average / 2))"></i></p>
+            <p class="overview">
+              Overview: {{ movie.overview }}
+            </p>
+            <p>
+              <AppActorsMovie />
+            </p>
+            <p>
+              <AppGenreMovie />
+            </p>
 
-            
+
           </div>
         </div>
       </div>
@@ -95,12 +133,12 @@ export default {
       <div class="col-3" v-for="tvShow in store.searchedTvshow">
         <div class="img-wrapper">
           <img :src="`https://image.tmdb.org/t/p/w342/${tvShow.poster_path}`" :alt="tvShow.name">
-          <div class="card-box" @click=searchActorsTvShows(tvShow.id)>
+          <div class="card-box" @mouseenter=searchActorsTvShows(tvShow.id),searchGenresTV(tvShow.id)>
             <h4>
               {{ tvShow.name }}
             </h4>
             <h6>
-              <em>{{ tvShow.original_name }}</em> 
+              <em>{{ tvShow.original_name }}</em>
             </h6>
             <p>Language: <img class="flag" :src="getImagePath(tvShow.original_language)" alt="Non disponibile">
               <!-- <lang-flag :iso="tvShow.original_language" />  -->
@@ -110,7 +148,12 @@ export default {
             <p class="overview">
               Overview: {{ tvShow.overview }}
             </p>
-            <p  ><AppActorsTV :tvID="tvShow.id"/></p>
+            <p>
+              <AppActorsTV />
+            </p>
+            <p>
+              <AppGenreTV />
+            </p>
           </div>
 
         </div>

@@ -1,12 +1,33 @@
 <script>
-import { store } from '../store.js'
+import { store } from '../store.js';
+import axios from 'axios';
 
 export default {
   name: 'AppHeader',
   data() {
     return {
       store,
+      apiKey: "4bc85001b5721a0ecbd19f8488e3f941",
     }
+  },
+  methods: {
+    getGenreMovie() {
+      axios.get('https://api.themoviedb.org/3/genre/movie/list', {
+        params: {
+          api_key: this.apiKey,
+        }
+      })
+        .then((response) => {
+          console.log(response.data.genres);
+          this.store.getGenreMovie = response.data.genres;
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
+  },
+  created() {
+    // this.getGenreMovie()
   },
 }
 </script>
@@ -24,6 +45,10 @@ export default {
             <button class="btn btn-outline-secondary" type="button" id="button-search"
               @click="$emit('search')">Cerca</button>
           </div>
+          <select name="generi" id="genres" @change="$emit("change-select")">
+            <option value="">Scegli un genere</option>
+            <option v-for="genre in store.getGenreMovie" :value=genre.name>{{ genre.name }}</option>
+          </select>
         </div>
 
 
