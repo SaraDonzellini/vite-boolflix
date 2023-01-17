@@ -100,13 +100,14 @@ div.col-3 {
 
 .card-box {
   filter: none;
-  width: 330px;
+  width: 342px;
   text-align: center;
   position: absolute;
   bottom: 0px;
   left: 0px;
   display: none;
   color: white;
+  background-color: black;
   // color: black;
 }
 
