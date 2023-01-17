@@ -101,6 +101,8 @@ div.col-3 {
 .card-box {
   filter: none;
   width: 342px;
+  height: 513px;
+  overflow-y: scroll;
   text-align: center;
   position: absolute;
   bottom: 0px;
